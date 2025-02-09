@@ -26,7 +26,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public boolean create(CustomerDtoRequest request) {
         String sql = "INSERT INTO customers (full_name, email, social_security_number) " +
-                "VALUES (:firstName, :email, :socialSecurityNumber);";
+                "VALUES (:fullName, :email, :socialSecurityNumber);";
 
         SqlParameterSource parameterSource = new MapSqlParameterSource()
                 .addValue("fullName", request.fullName())
@@ -94,7 +94,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Optional<Customer> getLastEntity() {
 
-        String sql = "SELECT * FROM customers ORDER DESC LIMIT 1";
+        String sql = "SELECT * FROM customers ORDER BY id DESC LIMIT 1";
         SqlParameterSource parameterSource = new MapSqlParameterSource();
         Optional<Customer> customer;
 
